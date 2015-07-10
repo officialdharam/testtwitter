@@ -2,7 +2,7 @@ package com.analytics.engine.connector.twitter;
 
 import java.util.List;
 
-import twitter4j.Tweet;
+import twitter4j.Status;
 
 import com.analytics.engine.connector.twitter.model.CommonCredentials;
 
@@ -14,9 +14,9 @@ public class SampleTwitter {
 
 	public static void searchTweets(boolean constructStory,final String query,  boolean downloadAndSaveImages, String newPath) {
 		SearchTweets search = new SearchTweets(CommonCredentials.CONSUMER_KEY_TWITTER, CommonCredentials.CONSUMER_SECRET_TWITTER, CommonCredentials.ACCESS_TOKEN_TWITTER, CommonCredentials.ACCESS_TOKEN_SECRET_TWITTER);
-		List<Tweet> tweets = search.searchTweets(constructStory, query, 30,downloadAndSaveImages);
+		List<Status> tweets = search.searchTweets(constructStory, query, 30,downloadAndSaveImages);
 
-		for (Tweet tweet : tweets) {
+		for (Status tweet : tweets) {
 			System.out.println(tweet);
 
 		}

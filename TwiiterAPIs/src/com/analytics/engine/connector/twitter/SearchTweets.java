@@ -5,11 +5,13 @@ import java.util.List;
 
 import twitter4j.Query;
 import twitter4j.QueryResult;
-import twitter4j.Tweet;
+import twitter4j.Status;
+import twitter4j.TweetEntity;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
 import com.analytics.engine.connector.twitter.model.BootStrapper;
+import com.analytics.engine.connector.twitter.model.Tweet;
 
 /**
  * 
@@ -68,10 +70,10 @@ public class SearchTweets {
 		this.accessTokenSecret = accessTokenSecret;
 	}
 
-	public List<Tweet> searchTweets(boolean constructStory, String queryString, int count, boolean downloadAndSaveImages) {
+	public List<Status> searchTweets(boolean constructStory, String queryString, int count, boolean downloadAndSaveImages) {
 
 		Twitter twitter = BootStrapper.bootStrapTwitterAPI(consumerKey, consumerSecret, accessToken, accessTokenSecret);
-		List<Tweet> tweetList = new ArrayList<Tweet>();
+		List<Status> tweetList = new ArrayList<Status>();
 		try {
 
 			QueryResult result;
@@ -79,8 +81,8 @@ public class SearchTweets {
 				Query query = new Query(queryString);
 				result = twitter.search(query);
 
-				List<twitter4j.Tweet> tweets = result.getTweets();
-				for (Tweet tweet : tweets) {
+				List<Status> tweets = result.getTweets();
+				for (Status tweet : tweets) {
 					tweetList.add(tweet);
 
 				}
